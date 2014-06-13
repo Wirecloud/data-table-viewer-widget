@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Template xmlns="http://wirecloud.conwet.fi.upm.es/ns/template#">
+    <Catalog.ResourceDescription>
+        <Vendor>CoNWeT</Vendor>
+        <Name>data-viewer-table</Name>
+        <DisplayName>Data Viewer (Table)</DisplayName>
+        <Author>amagan</Author>
+        <Version>1.0.0</Version>
+        <Mail>sblanco@conwet.com</Mail>
+        <Description>This widget allows you to view data in a table</Description>
+        <ImageURI>images/catalogue.png</ImageURI>
+        <iPhoneImageURI></iPhoneImageURI>
+        <WikiURI></WikiURI>
+        <Requirements>
+        </Requirements>
+    </Catalog.ResourceDescription>
+
+    <Platform.Preferences>
+    </Platform.Preferences>
+
+    <Platform.Wiring>
+        <InputEndpoint name="dataset" 
+                type="text" 
+                label="Data and Structure"
+                action_label="Data and Structure"
+                description="A JSON with two fields: structure (for the structure of the data) and data (the data ifself)"
+                friendcode="dataset"/>
+    </Platform.Wiring>
+
+    <Platform.Link>
+        <XHTML href="index.html" contenttype="text/html" cacheable="true" use-platform-style="true"/>
+    </Platform.Link>
+
+    <Platform.Rendering width="15" height="37"/>
+</Template>
