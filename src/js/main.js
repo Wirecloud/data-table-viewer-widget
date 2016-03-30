@@ -108,11 +108,11 @@
         this.structure = dataset.structure;
         this.id = dataset.id || dataset.structure[0].id;
 
-        // Create the table columns
-        var columns = [];
-        for (var i = 0; i < this.structure.length; i++) {
-            columns.push({field: this.structure[i].id, label: this.structure[i].label || null, sortable: true, type: this.structure[i].type});
-        }
+        this.structure.forEach(function (column) {
+            if ('id' in column && !('field' in column)) {
+                column.field = column.id;
+            }
+        });
 
         //The table configuration
         var pageSize = MashupPlatform.prefs.get("pagination");
@@ -125,7 +125,7 @@
         };
 
         // Create the table
-        this.table = new StyledElements.ModelTable(columns, options);
+        this.table = new StyledElements.ModelTable(this.structure, options);
         this.table.addEventListener("click", onRowClick.bind(this));
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
