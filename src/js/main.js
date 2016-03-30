@@ -29,7 +29,12 @@
     DataViewer.prototype.init = function init() {
         this.layout = new StyledElements.BorderLayout();
         this.layout.insertInto(document.body);
-        createFilter.call(this);
+
+        //Create the search filter only if its enabled
+        var bool = JSON.parse(MashupPlatform.prefs.get("search"));
+        if (bool) {
+            createFilter.call(this);
+        }
         this.layout.repaint();
     };
 
@@ -110,9 +115,11 @@
         }
 
         //The table configuration
+        var pageSize = MashupPlatform.prefs.get("pagination");
+        pageSize = pageSize > 0 ? pageSize : 0;
         var options = {
             id: this.id,
-            pageSize: 10,
+            pageSize: pageSize,
             class: 'table-striped',
             stateFunc: dataset.state_function
         };

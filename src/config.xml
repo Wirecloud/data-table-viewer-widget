@@ -8,6 +8,15 @@
     <authors>Aitor Magán &lt;amagan@conwet.com&gt;</authors>
     <contributors>Álvaro Arranz García &lt;aarranz@conwet.com&gt;</contributors>
   </details>
+
+  <preferences>
+    <preference name="pagination" label="Pagination size" description="The number of items per page to be used for pagination. 0 for no pagination" type="number" default="0"/>
+    <preference name="search" label="Search bar" description="Set if the search bar should be displayed" type="list" default="true">
+      <option label="On" value="true"/>
+      <option label="Off" value="false"/>
+    </preference>
+  </preferences>
+
   <wiring>
     <inputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON with two fields: structure (for the structure of the data) and data (the data ifself)" actionlabel="Data and Structure" friendcode="dataset"/>
     <outputendpoint name="selected-entry" type="text" label="Selected Entry" description="The object associated to the selected row"/>
