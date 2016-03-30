@@ -1,19 +1,20 @@
 /*
- *     Copyright (c) 2014 CoNWeT Lab., Universidad Politécnica de Madrid
+ *     Copyright (c) 2014 - 2016 CoNWeT Lab., Universidad Politécnica de Madrid
  *
  */
+/* global StyledElements */
 
 (function () {
- 
+
     "use strict";
 
-    var DataViewer = function() {
+    var DataViewer = function () {
         /* Input endpoints */
         MashupPlatform.wiring.registerCallback("dataset", handlerDataSet.bind(this));
 
         /* Context */
         MashupPlatform.widget.context.registerCallback(function (newValues) {
-            if (this.layout && "heightInPixels" in newValues) {
+            if (this.layout && ("heightInPixels" in newValues || "widthInPixels" in newValues)) {
                 this.layout.repaint();
             }
         }.bind(this));
@@ -24,7 +25,7 @@
         this.structure = [];        // [ {"id":"pk"} , {"id": "name"}, ...]
         this.data = [];             // [ {"id":"2", "name":"test"}, {"id":"3", "name": "test2"}, ...]
     };
- 
+
     DataViewer.prototype.init = function init() {
         this.layout = new StyledElements.BorderLayout();
         this.layout.insertInto(document.body);
@@ -32,9 +33,9 @@
         this.layout.repaint();
     };
 
-/**************************************************************************/
-/****************************** AUXILIAR **********************************/
-/**************************************************************************/
+    /**************************************************************************/
+    /****************************** AUXILIAR **********************************/
+    /**************************************************************************/
 
     var createFilter = function createFilter() {
         var southLayoutOptions = {
@@ -45,9 +46,9 @@
         this.layout.getSouthContainer().appendChild(southLayout);
 
         // Function to be call when the user clicks on "search" or types "enter"
-        function filter() {
+        var filter = function filter() {
             this.table.source.changeOptions({'keywords': textInput.getValue()});
-        }
+        };
 
         var searchAddon = new StyledElements.Addon({'title': 'Search'});
         southLayout.getWestContainer().appendChild(searchAddon);
@@ -71,20 +72,20 @@
         southLayout.getEastContainer().appendChild(search_button);
     };
 
-/**************************************************************************/
-/****************************** HANDLERS **********************************/
-/**************************************************************************/
+    /**************************************************************************/
+    /****************************** HANDLERS **********************************/
+    /**************************************************************************/
 
     var handlerDataSet = function handlerSlotIssue(datasetString) {
         /*  dataset = {
          *      "structure": [ {"id": "pk", "type": "number"}, ... ],
-         *      "data": [ {"pk": "", ...}, ...]
+         *      "data": [ {"pk": "", ...}, ...],
          *  }
          */
 
         // Remove the previuos table
         this.layout.getCenterContainer().clear();
-        
+
         // Parse the dataset
         var dataset = JSON.parse(datasetString);
 
@@ -96,7 +97,7 @@
         var columns = [];
         for (var i = 0; i < this.structure.length; i++) {
             //Accepted types: number, boolean, string, date
-            columns.push({ field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
+            columns.push({field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
         }
 
         this.table = new StyledElements.ModelTable(columns, {id: this.structure[0].id, pageSize: 10});
