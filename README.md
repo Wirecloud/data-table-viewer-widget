@@ -91,10 +91,6 @@ dataset = {
 }
 ```
 
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
-
 ## Copyright and License
 
 Copyright (c) 2016 Conwet

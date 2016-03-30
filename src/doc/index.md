@@ -52,7 +52,3 @@ dataset = {
     "state_function" : function (entry) {entry.age >= 18 ? return "success" : return "danger"}
 }
 ```
-
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
