@@ -18,7 +18,7 @@
   </preferences>
 
   <wiring>
-    <inputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON with two fields: structure (for the structure of the data) and data (the data ifself)" actionlabel="Data and Structure" friendcode="dataset"/>
+    <inputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON or an object with two fields: structure (for the structure of the data) and data (the data ifself)" actionlabel="Data and Structure" friendcode="dataset"/>
     <outputendpoint name="selected-entry" type="text" label="Selected Entry" description="The object associated to the selected row"/>
     <outputendpoint name="condition-list" type="text" label="Selected Filter" description="Conditions for filtering data using the selected id (e.g. by connecting this endpoint to the Condition List endpoint of the AND Filter operator)" friendcode="condition-list"/>
   </wiring>
