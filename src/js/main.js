@@ -78,31 +78,47 @@
 
     var handlerDataSet = function handlerSlotIssue(datasetString) {
         /*  dataset = {
-         *      "structure": [ {"id": "pk", "type": "number"}, ... ],
+         *      "structure": [ {"id": "pk", "label": "Primary Key,"type": "number"}, ... ],
          *      "data": [ {"pk": "", ...}, ...],
          *      "id": pk,
+         *      "state_function" : function (entry) {...}, //RETURNS "success"(green), "danger"(red), or nothing (non-colored).
          *  }
          */
 
         // Remove the previuos table
         this.layout.getCenterContainer().clear();
 
-        // Parse the dataset
-        var dataset = JSON.parse(datasetString);
+        /* Parse the dataset (if it's a JSON).
+         * This is done to allow both kinds of input (JSON or non-JSON), since functions are required for the table to display the state of the row, and functions can't be parsed into a JSON string.
+         */
+        var dataset;
+        if (typeof (datasetString) === "string") {
+            dataset = JSON.parse(datasetString);
+        } else {
+            dataset = datasetString;
+        }
 
         // Set the data and the structure
         this.data = dataset.data;
         this.structure = dataset.structure;
         this.id = dataset.id || dataset.structure[0].id;
 
-        // Create the table
+        // Create the table columns
         var columns = [];
         for (var i = 0; i < this.structure.length; i++) {
-            //Accepted types: number, boolean, string, date
-            columns.push({field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
+            columns.push({field: this.structure[i].id, label: this.structure[i].label || null, sortable: true, type: this.structure[i].type});
         }
 
-        this.table = new StyledElements.ModelTable(columns, {id: this.id, pageSize: 10});
+        //The table configuration
+        var options = {
+            id: this.id,
+            pageSize: 10,
+            class: 'table-striped',
+            stateFunc: dataset.state_function
+        };
+
+        // Create the table
+        this.table = new StyledElements.ModelTable(columns, options);
         this.table.addEventListener("click", onRowClick.bind(this));
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
