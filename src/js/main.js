@@ -80,6 +80,7 @@
         /*  dataset = {
          *      "structure": [ {"id": "pk", "type": "number"}, ... ],
          *      "data": [ {"pk": "", ...}, ...],
+         *      "id": pk,
          *  }
          */
 
@@ -92,6 +93,7 @@
         // Set the data and the structure
         this.data = dataset.data;
         this.structure = dataset.structure;
+        this.id = dataset.id || dataset.structure[0].id;
 
         // Create the table
         var columns = [];
@@ -100,13 +102,30 @@
             columns.push({field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
         }
 
-        this.table = new StyledElements.ModelTable(columns, {id: this.structure[0].id, pageSize: 10});
+        this.table = new StyledElements.ModelTable(columns, {id: this.id, pageSize: 10});
+        this.table.addEventListener("click", onRowClick.bind(this));
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
 
         // Repaint the layout
         this.layout.repaint();
     };
+
+    //Row selection
+    var onRowClick = function onRowClick(row) {
+        //Clear selection
+        if (this.table.selection.length > 0 && this.table.selection[0] === row[this.id]) {
+            this.table.select();
+            MashupPlatform.wiring.pushEvent('condition-list', []);
+            MashupPlatform.wiring.pushEvent('selected-entry', null);
+        } else {
+            //New selection
+            this.table.select(row[this.id]);
+            MashupPlatform.wiring.pushEvent('condition-list', [{type: 'eq', attr: this.id, value: row[this.id]}]);
+            MashupPlatform.wiring.pushEvent('selected-entry', row);
+        }
+    };
+
 
     var data_viewer = new DataViewer();
     window.addEventListener("DOMContentLoaded", data_viewer.init.bind(data_viewer), false);
