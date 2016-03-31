@@ -87,7 +87,7 @@ Example input:
 dataset = {
     "structure": [ {"id": "name", "label": "Username","type": "string"}, {"id": "age", "label": "Age","type": "number"} ],
     "data": [ {"name": "Bart", "age": 29 }, {"name": "Lisa", "date": 7 }],
-    "state_function" : function (entry) {entry.age >= 18 ? return "success" : return "danger"}
+    "state_function" : function (entry) {return entry.age >= 18 ? "success" : "danger"}
 }
 ```
 
