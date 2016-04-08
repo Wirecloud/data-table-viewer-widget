@@ -1,0 +1,1 @@
+The Data Table Viewer Widget provides the ability to represent a set of data on a table.
