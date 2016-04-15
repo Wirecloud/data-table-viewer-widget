@@ -1,5 +1,4 @@
 {
-  "name": "data-table-viewer",
   "description": "This package.json file is only used for installing npm dependencies. But this is not an installable node package, but a WireCloud operator. Take a look into src/config.xml for more details about this operator",
   "devDependencies": {
     "grunt-contrib-clean": "~0.6.0",
@@ -16,8 +15,5 @@
     "jquery": "^2.1.1",
     "mock-applicationmashup": "^0.1.3"
   },
-  "vendor": "CoNWeT",
-  "private": true,
-  "version": "1.0.1"
-
+  "private": true
 }
