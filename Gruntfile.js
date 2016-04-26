@@ -136,17 +136,6 @@ module.exports = function (grunt) {
             }
         },
 
-        jsbeautifier: {
-            files: ["Gruntfile.js"],
-            options: {
-                js: {
-                    spaceAfterAnonFunction: true,
-                    endWithNewline: false,
-                    jslintHappy: true
-                }
-            }
-        },
-
         jasmine: {
             test: {
                 src: ['src/js/*.js', '!src/js/main.js'],
@@ -197,7 +186,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-strip-code');
     grunt.loadNpmTasks('grunt-text-replace');
-    grunt.loadNpmTasks('grunt-jsbeautifier');
 
     grunt.registerTask('test', [
         'jshint',
@@ -214,7 +202,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'jsbeautifier',
         'test',
         'build'
     ]);
