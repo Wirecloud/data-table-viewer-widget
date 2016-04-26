@@ -5,8 +5,15 @@
     <email>wirecloud@conwet.com</email>
     <image>images/catalogue.png</image>
     <description>This widget allows you to view data in a table</description>
-    <authors>Aitor Magán &lt;amagan@conwet.com&gt;</authors>
+    <longdescription>DESCRIPTION.md</longdescription>
+    <authors>Aitor Magán &lt;amagan@conwet.com&gt;, Alejandro Rodriguez &lt;alex.rodriguez@conwet.com&gt;</authors>
     <contributors>Álvaro Arranz García &lt;aarranz@conwet.com&gt;</contributors>
+    <license>Apache License 2.0</license>
+    <licenseurl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseurl>
+    <homepage>https://github.com/Wirecloud/data-table-viewer-widget</homepage>
+    <issuetracker>https://github.com/Wirecloud/data-table-viewer-widget/issues</issuetracker>
+    <changelog>doc/changelog.md</changelog>
+    <doc>doc/index.md</doc>
   </details>
 
   <preferences>
