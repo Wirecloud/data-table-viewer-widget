@@ -30,5 +30,5 @@
     <outputendpoint name="condition-list" type="text" label="Selected Filter" description="Conditions for filtering data using the selected id (e.g. by connecting this endpoint to the Condition List endpoint of the AND Filter operator)" friendcode="condition-list"/>
   </wiring>
   <contents src="index.html" useplatformstyle="true"/>
-  <rendering height="37" width="15"/>
+  <rendering height="200px" width="30%"/>
 </widget>
