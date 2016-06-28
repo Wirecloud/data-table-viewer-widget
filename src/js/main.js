@@ -138,7 +138,10 @@
 
         // Create the table
         this.table = new StyledElements.ModelTable(this.structure, options);
-        this.table.addEventListener("click", onRowClick.bind(this));
+        this.table.addEventListener("selectionChange", function (_, selection) {
+            MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
+        }.bind(this));
+
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
 
@@ -146,21 +149,23 @@
         this.layout.repaint();
     };
 
-    // Row selection
-    var onRowClick = function onRowClick(row) {
-        // Clear selection
-        if (this.table.selection.length > 0 && this.table.selection[0] === row[this.id]) {
-            this.table.select();
-            MashupPlatform.wiring.pushEvent('condition-list', []);
-            MashupPlatform.wiring.pushEvent('selected-entry', null);
-        } else {
-            // New selection
-            this.table.select(row[this.id]);
-            MashupPlatform.wiring.pushEvent('condition-list', [{type: 'eq', attr: this.id, value: row[this.id]}]);
-            MashupPlatform.wiring.pushEvent('selected-entry', row);
-        }
-    };
+    // Get the row list from the id list
+    var buildSelectedRows = function buildSelectedRows(data, selectedIds, idRef) {
+        var result = [];
 
+        var aux = data.map(function (e) {
+            return e[idRef];
+        });
+
+        selectedIds.forEach(function (id) {
+            var i = aux.indexOf(id);
+            if (i !== -1) {
+                result.push(data[i]);
+            }
+        });
+
+        return result;
+    };
 
     var data_viewer = new DataViewer();
     window.addEventListener("DOMContentLoaded", data_viewer.init.bind(data_viewer), false);
