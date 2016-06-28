@@ -138,7 +138,7 @@
 
         // Create the table
         this.table = new StyledElements.ModelTable(this.structure, options);
-        this.table.addEventListener("selectionChange", function (_, selection) {
+        this.table.addEventListener("select", function (_, selection) {
             MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
         }.bind(this));
 
