@@ -138,9 +138,15 @@
 
         // Create the table
         this.table = new StyledElements.ModelTable(this.structure, options);
-        this.table.addEventListener("select", function (_, selection) {
-            MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
-        }.bind(this));
+
+        try {
+            this.table.addEventListener("select", function (_, selection) {
+                MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
+            }.bind(this));
+        }
+        catch (err) {
+            MashupPlatform.widget.log("Row selection is disabled. Update Wirecloud to enable it.", MashupPlatform.log.INFO);
+        }
 
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
