@@ -99,6 +99,7 @@
          *      "data": [ {"pk": "", ...}, ...],
          *      "id": pk,
          *      "state_function" : function (entry) {...}, //RETURNS "success"(green), "danger"(red), or nothing (non-colored).
+         *      "selectionType" : "single"
          *  }
          */
 
@@ -133,7 +134,8 @@
             id: this.id,
             pageSize: pageSize,
             class: 'table-striped',
-            stateFunc: dataset.state_function
+            stateFunc: dataset.state_function,
+            selectionType: dataset.selectionType || "ignore"
         };
 
         // Create the table
