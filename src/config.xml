@@ -16,6 +16,10 @@
     <doc>doc/index.md</doc>
   </details>
 
+  <requirements>
+      <feature name="StyledElements"/>
+  </requirements>
+
   <preferences>
     <preference name="pagination" label="Pagination size" description="The number of items per page to be used for pagination. 0 for no pagination" type="number" default="0"/>
     <preference name="search" label="Search bar" description="Set if the search bar should be displayed" type="list" default="true">
