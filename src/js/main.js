@@ -76,13 +76,13 @@
         searchAddon.appendChild(searchIcon);
 
         // Set input field
-        var textInput = new StyledElements.StyledTextField({placeholder: 'Filter'});
+        var textInput = new StyledElements.TextField({placeholder: 'Filter'});
         textInput.addEventListener('submit', filter.bind(this));
         southLayout.getCenterContainer().appendChild(textInput);
         searchAddon.assignInput(textInput);
 
         // Set search button
-        var search_button = new StyledElements.StyledButton({
+        var search_button = new StyledElements.Button({
             text: 'Search'
         });
         search_button.addEventListener('click', filter.bind(this));
