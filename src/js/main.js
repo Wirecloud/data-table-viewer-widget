@@ -145,8 +145,7 @@
             this.table.addEventListener("select", function (_, selection) {
                 MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
             }.bind(this));
-        }
-        catch (err) {
+        } catch (err) {
             MashupPlatform.widget.log("Row selection is disabled. Update Wirecloud to enable it.", MashupPlatform.log.INFO);
         }
 
