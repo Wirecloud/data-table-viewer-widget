@@ -42,7 +42,7 @@
         this.layout = new StyledElements.BorderLayout();
         this.layout.insertInto(document.body);
 
-        //Create the search filter only if its enabled
+        // Create the search filter only if its enabled
         var bool = JSON.parse(MashupPlatform.prefs.get("search"));
         if (bool) {
             createFilter.call(this);
@@ -50,9 +50,9 @@
         this.layout.repaint();
     };
 
-    /**************************************************************************/
-    /****************************** AUXILIAR **********************************/
-    /**************************************************************************/
+    /** ************************************************************************/
+    /** **************************** AUXILIAR **********************************/
+    /** ************************************************************************/
 
     var createFilter = function createFilter() {
         var southLayoutOptions = {
@@ -89,9 +89,9 @@
         southLayout.getEastContainer().appendChild(search_button);
     };
 
-    /**************************************************************************/
-    /****************************** HANDLERS **********************************/
-    /**************************************************************************/
+    /** ************************************************************************/
+    /** **************************** HANDLERS **********************************/
+    /** ************************************************************************/
 
     var handlerDataSet = function handlerSlotIssue(datasetString) {
         /*  dataset = {
@@ -126,7 +126,7 @@
             }
         });
 
-        //The table configuration
+        // The table configuration
         var pageSize = MashupPlatform.prefs.get("pagination");
         pageSize = pageSize > 0 ? pageSize : 0;
         var options = {
@@ -146,15 +146,15 @@
         this.layout.repaint();
     };
 
-    //Row selection
+    // Row selection
     var onRowClick = function onRowClick(row) {
-        //Clear selection
+        // Clear selection
         if (this.table.selection.length > 0 && this.table.selection[0] === row[this.id]) {
             this.table.select();
             MashupPlatform.wiring.pushEvent('condition-list', []);
             MashupPlatform.wiring.pushEvent('selected-entry', null);
         } else {
-            //New selection
+            // New selection
             this.table.select(row[this.id]);
             MashupPlatform.wiring.pushEvent('condition-list', [{type: 'eq', attr: this.id, value: row[this.id]}]);
             MashupPlatform.wiring.pushEvent('selected-entry', row);
