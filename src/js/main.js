@@ -135,7 +135,7 @@
             pageSize: pageSize,
             class: 'table-striped',
             stateFunc: dataset.state_function,
-            selectionType: dataset.selectionType || "ignore"
+            selectionType: dataset.selectionType || "none"
         };
 
         // Create the table

@@ -3,7 +3,7 @@
     "use strict";
 
 
-    describe("Test AndFilter", function () {
+    describe("Test DataTableViewer", function () {
         beforeAll(function () {
             window.MashupPlatform = new MockMP.MockMP();
         });
