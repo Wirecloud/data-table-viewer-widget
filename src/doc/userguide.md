@@ -43,12 +43,14 @@ To use this widget, the input data must be a JavaScript object with the followin
 
 - **state_function**: A function to calculate the state of each row, this is, the color it will get. This function takes as an argument a row (an item of the data array), and should return `"success"`, `"warning"`, `"danger"`, `"info"` or `null`. For the state function to work, data can't be on a JSON, since functions dont get parsed. This property is optional, and if omitted the table won't be colored.
 
+- **selectionType**: A string to determine the selection behaviour of the table. Can be "none" to disable selection, "single" to only allow one row to be selected, or "multiple" to allow multiple rows to be selected.
+
 Example input:
 
 ```javascript
 dataset = {
     "structure": [ {"id": "name", "label": "Username","type": "string"}, {"id": "age", "label": "Age","type": "number"} ],
     "data": [ {"name": "Bart", "age": 29 }, {"name": "Lisa", "date": 7 }],
-    "state_function" : function (entry) {entry.age >= 18 ? return "success" : return "danger"}
+    "state_function" : function (entry) {return entry.age >= 18 ? "success" : "danger"}
 }
 ```
