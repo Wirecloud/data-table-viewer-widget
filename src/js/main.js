@@ -142,7 +142,7 @@
         this.table = new StyledElements.ModelTable(this.structure, options);
 
         try {
-            this.table.addEventListener("select", function (_, selection) {
+            this.table.addEventListener("select", function (selection) {
                 MashupPlatform.wiring.pushEvent('selected-entry', buildSelectedRows(this.data, selection, this.id));
             }.bind(this));
         } catch (err) {
